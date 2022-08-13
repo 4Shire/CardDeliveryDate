@@ -14,7 +14,6 @@ import static org.openqa.selenium.Keys.BACK_SPACE;
 public class DeliveryTest {
 
 
-
     @Test
     void shouldRegisterCard() {
         open("http://localhost:9999");
@@ -22,7 +21,6 @@ public class DeliveryTest {
         String firstDate = DataGenerator.generateDate(27);
         String secondDate = DataGenerator.generateDate(35);
 
-        //первая попытка
 
         $("[data-test-id='city'] input").setValue(DataGenerator.city());
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
@@ -33,8 +31,6 @@ public class DeliveryTest {
         $$(".button__text").find(Condition.text("Запланировать")).click();
         $(".notification__content").shouldBe(Condition.visible).shouldHave(exactText("Встреча успешно запланирована на " + firstDate), Duration.ofSeconds(15));
         $(".notification__content").click();
-
-        //вторая попытка
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
         $("[data-test-id='date'] input").setValue(secondDate);
